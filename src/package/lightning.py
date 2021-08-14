@@ -38,7 +38,10 @@ class PacketLauncher(threading.Thread):
             elif self.thread_key == 1:
                 testing_count = testing_count + 1
                 print("LightningArrow Threading Systems Testing" + str(testing_count))
-                time.sleep(1)
+                """ warning! send_packet function here is dangerous!
+                
+                """
+                time.sleep(1) # safeguard
                 continue
             else:
                 break
@@ -52,6 +55,6 @@ class PacketLauncher(threading.Thread):
         return
 
 def send_packet(_target_ip_address):
-    send(IP(dst = _target_ip_address) / UDP(dport = 53,) / Raw(load = "abc"))
+    send(IP(dst = _target_ip_address) / UDP(dport = 53,) / Raw(load = "abc")) # DNS protocol
     return
 
