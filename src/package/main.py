@@ -11,10 +11,13 @@
     * LightningArrow/src/package/main.py
     * main function code file
 """
+from src.package import cui
 
 """ @main function
 """
 def main():
+    main_cui_engine = cui.Cui()
+    main_cui_engine.cui_engine()
     return
 
 """ @call main
