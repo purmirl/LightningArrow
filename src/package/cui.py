@@ -16,3 +16,8 @@ class Cui:
     def __init__(self):
         return
 
+
+    def get_command(self, _layer_name):
+        result = ""
+        result = input(_layer_name + "@lightningarrow:~# ")
+        return result
