@@ -13,7 +13,6 @@
 """
 from src.package.function import is_protocol_address
 
-
 class Cui:
     def __init__(self):
         self.reset_value()
