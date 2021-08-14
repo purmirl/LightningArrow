@@ -43,8 +43,10 @@ class Cui:
                 self.lightning_stop()
                 continue
             elif main_command == "version":
-
+                self.print_software_version()
                 continue
+            elif main_command == "exit":
+                break
             else:
                 continue
         return
@@ -91,4 +93,11 @@ class Cui:
     def print_rights(self):
         print("Copyright 2021~ PeTrA. All rights reserved.")
         print("LightningArrow 1.0\n")
+        return
+
+    def print_software_version(self):
+        software_version_string = "\n" \
+                                  " LightningArrow v 1.0 by PeTrA. 2021.AGUST Updated.\n" \
+                                  ""
+        print(software_version_string)
         return
