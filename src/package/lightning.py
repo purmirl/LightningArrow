@@ -11,10 +11,43 @@
     * LightningArrow/src/package/lightning.py
     * lightning (UDP launcher module) code file
 """
+import threading
+import time
+
 from scapy.layers.inet import IP, UDP
 from scapy.packet import Raw
 from scapy.sendrecv import send
 
+class PacketLauncher(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        super(PacketLauncher, self).__init__(*args, **kwargs)
+        self._stop_event = threading.Event()
+        self.reset_value()
+
+    def reset_value(self):
+        self.target_ip_address = ""
+        return
+
+    def run(self):
+        testing_count = 0
+        while True:
+            testing_count = testing_count + 1
+            print("LightningArrow Threading Systems Testing" + str(testing_count))
+            time.sleep(1)
+
+    def stop(self):
+        self._stop_event.set()
+        return
+
+    def stopped(self):
+        return self._stop_event.is_set()
+
+    def set_target_ip_address(self, _target_ip_address):
+        self.target_ip_address = _target_ip_address
+        return
+
+
 def send_packet(_target_ip_address):
     send(IP(dst = _target_ip_address) / UDP(dport = 53,) / Raw(load = "abc"))
     return
+

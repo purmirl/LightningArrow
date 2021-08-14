@@ -11,6 +11,7 @@
     * LightningArrow/src/package/cui.py
     * console user interface code file
 """
+from src.package import lightning
 from src.package.function import is_protocol_address
 
 class Cui:
@@ -20,9 +21,11 @@ class Cui:
 
     def reset_value(self):
         self.target_ip_address = ""
+        self.lightning_engine = lightning.PacketLauncher()
         return
 
     def cui_engine(self):
+        self.print_rights()
         while True:
             main_command = self.get_command("main")
             if main_command == "?":
@@ -30,12 +33,17 @@ class Cui:
                 continue
             elif main_command == "target":
                 self.target_ip_address = self.set_target()
+                self.lightning_engine.set_target_ip_address(self.target_ip_address)
                 continue
             elif main_command == "launch":
                 self.lightning_start()
                 continue
             elif main_command == "stop":
+                print("break")
                 self.lightning_stop()
+                continue
+            elif main_command == "version":
+
                 continue
             else:
                 continue
@@ -55,18 +63,25 @@ class Cui:
     def set_target(self):
         while True:
             input_value = ""
+            print("")
             input_value = input(" target ip address : ")
             if (is_protocol_address(input_value) == 0):
                 print(" error, check ip address!")
                 continue
             else:
+                print("")
                 break
         return input_value
 
     def lightning_start(self):
+        self.lightning_engine.daemon = True
+        self.lightning_engine.start()
         return
 
     def lightning_stop(self):
+        self.lightning_engine.stop()
+        self.lightning_engine.join()
+        self.lightning_engine.daemon = False
         return
 
     def get_command(self, _layer_name):
