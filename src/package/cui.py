@@ -20,7 +20,8 @@ class Cui:
         return
 
     def reset_value(self):
-        self.target_ip_address == ""
+        self.target_ip_address = ""
+        return
 
     def cui_engine(self):
         while True:
@@ -29,7 +30,7 @@ class Cui:
                 self.print_main_option()
                 continue
             elif main_command == "target":
-                target_ip_address = self.set_target()
+                self.target_ip_address = self.set_target()
                 continue
             elif main_command == "launch":
                 self.lightning_start()
@@ -54,14 +55,14 @@ class Cui:
 
     def set_target(self):
         while True:
-            target_ip_address = ""
-            target_ip_address = input(" target ip address : ")
-            if (is_protocol_address(target_ip_address) == 0):
+            input_value = ""
+            input_value = input(" target ip address : ")
+            if (is_protocol_address(input_value) == 0):
                 print(" error, check ip address!")
                 continue
             else:
                 break
-        return target_ip_address
+        return input_value
 
     def lightning_start(self):
         return
