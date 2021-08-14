@@ -51,17 +51,6 @@ class PacketLauncher(threading.Thread):
         self.thread_key = 0
         return
 
-    """ backup - 20210814
-    def stop(self):
-        self._stop_event.set()
-        return
-
-    def stopped(self):
-        return self._stop_event.is_set()
-    """
-
-
-
 def send_packet(_target_ip_address):
     send(IP(dst = _target_ip_address) / UDP(dport = 53,) / Raw(load = "abc"))
     return
