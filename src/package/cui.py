@@ -79,9 +79,8 @@ class Cui:
         return
 
     def lightning_stop(self):
-        self.lightning_engine.stop()
+        self.lightning_engine.set_thread_stop()
         self.lightning_engine.join()
-        self.lightning_engine.daemon = False
         return
 
     def get_command(self, _layer_name):

@@ -26,25 +26,40 @@ class PacketLauncher(threading.Thread):
 
     def reset_value(self):
         self.target_ip_address = ""
+        self.thread_key = 0
         return
 
     def run(self):
+        self.thread_key = 1
         testing_count = 0
         while True:
-            testing_count = testing_count + 1
-            print("LightningArrow Threading Systems Testing" + str(testing_count))
-            time.sleep(1)
+            if self.thread_key == 0:
+                break
+            elif self.thread_key == 1:
+                testing_count = testing_count + 1
+                print("LightningArrow Threading Systems Testing" + str(testing_count))
+                time.sleep(1)
+                continue
+            else:
+                break
 
+    def set_target_ip_address(self, _target_ip_address):
+        self.target_ip_address = _target_ip_address
+        return
+
+    def set_thread_stop(self):
+        self.thread_key = 0
+        return
+
+    """ backup - 20210814
     def stop(self):
         self._stop_event.set()
         return
 
     def stopped(self):
         return self._stop_event.is_set()
+    """
 
-    def set_target_ip_address(self, _target_ip_address):
-        self.target_ip_address = _target_ip_address
-        return
 
 
 def send_packet(_target_ip_address):
