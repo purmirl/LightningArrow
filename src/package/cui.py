@@ -14,6 +14,8 @@
 from src.package import lightning
 from src.package.function import is_protocol_address
 
+""" @Cui class
+"""
 class Cui:
     def __init__(self):
         self.reset_value()
@@ -24,6 +26,16 @@ class Cui:
         self.lightning_engine = lightning.PacketLauncher()
         return
 
+    """ @cui engine function
+    @:map
+        @:main
+            @:?
+            @:target
+            @:launch
+            @:stop
+            @:version
+            @:exit
+    """
     def cui_engine(self):
         self.print_rights()
         while True:
@@ -51,6 +63,8 @@ class Cui:
                 continue
         return
 
+    """ @main option
+    """
     def print_main_option(self):
         main_option = "\n" \
                       " 01. target : set target (ip address) \n" \
@@ -62,6 +76,8 @@ class Cui:
         print(main_option)
         return
 
+    """ @set target
+    """
     def set_target(self):
         while True:
             input_value = ""
@@ -75,11 +91,15 @@ class Cui:
                 break
         return input_value
 
+    """ @lightning thread start
+    """
     def lightning_start(self):
         self.lightning_engine.daemon = True
         self.lightning_engine.start()
         return
 
+    """ @lightning thread stop
+    """
     def lightning_stop(self):
         self.lightning_engine.set_thread_stop()
         self.lightning_engine.join()
