@@ -105,16 +105,22 @@ class Cui:
         self.lightning_engine.join()
         return
 
+    """ @get command
+    """
     def get_command(self, _layer_name):
         result = ""
         result = input(_layer_name + "@lightningarrow:~# ")
         return result
 
+    """ @print copyright
+    """
     def print_rights(self):
         print("Copyright 2021~ PeTrA. All rights reserved.")
         print("LightningArrow 1.0\n")
         return
 
+    """ @print software version
+    """
     def print_software_version(self):
         software_version_string = "\n" \
                                   " LightningArrow v 1.0 by PeTrA. 2021.AGUST Updated.\n" \
