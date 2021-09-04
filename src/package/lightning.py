@@ -18,12 +18,16 @@ from scapy.layers.inet import IP, UDP
 from scapy.packet import Raw
 from scapy.sendrecv import send
 
+""" @Packet Launcher class
+"""
 class PacketLauncher(threading.Thread):
     def __init__(self, *args, **kwargs):
         super(PacketLauncher, self).__init__(*args, **kwargs)
         self._stop_event = threading.Event()
         self.reset_value()
 
+    """@reset class value
+    """
     def reset_value(self):
         self.target_ip_address = ""
         self.thread_key = 0
