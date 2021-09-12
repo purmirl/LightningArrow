@@ -26,13 +26,15 @@ class PacketLauncher(threading.Thread):
         self._stop_event = threading.Event()
         self.reset_value()
 
-    """@reset class value
+    """ @reset class value
     """
     def reset_value(self):
         self.target_ip_address = ""
         self.thread_key = 0
         return
 
+    """ @packet launcher function on thread
+    """
     def run(self):
         self.thread_key = 1
         testing_count = 0
@@ -50,14 +52,28 @@ class PacketLauncher(threading.Thread):
             else:
                 break
 
+    """ @set target ip in class
+    @:param
+        target ip address
+    @:return
+        null
+    """
     def set_target_ip_address(self, _target_ip_address):
         self.target_ip_address = _target_ip_address
         return
 
+    """ @set thread stop
+    @:param
+        null
+    @:return
+        null
+    """
     def set_thread_stop(self):
         self.thread_key = 0
         return
 
+""" @send packet function
+"""
 def send_packet(_target_ip_address):
     send(IP(dst = _target_ip_address) / UDP(dport = 53,) / Raw(load = "abc")) # DNS protocol
     return
